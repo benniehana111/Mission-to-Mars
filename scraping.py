@@ -1,3 +1,6 @@
+# 10.5.2: Update the Code
+# 10.5.3: Integrate MongoDB Into the Web App
+
 # Import Splinter, BeautifulSoup, and Pandas
 from splinter import Browser
 from bs4 import BeautifulSoup as soup

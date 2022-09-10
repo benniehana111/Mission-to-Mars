@@ -6,22 +6,26 @@ This analysis involved creating an automated web scraping process using Python, 
 
 ## Results
 
+### Deliverable 1
 The code for deliverable 1 correctly displays high resolution Mars Hemisphere Images and Titles:
 
-![alt text](https://github.com/benniehana111/Mission-to-Mars/blob/main/images/Mars_page_1.png)?raw=true)
+![alt text](https://github.com/benniehana111/Mission-to-Mars/blob/main/images/Mars_page_1.png)
 
+### Deliverable 2
 The code for deliverable 2 generates a web app correctly displays the Latest Mars News, Featured Mars Image, Mars Facts Table, and the Mars Hemispheres images.
 It includes a "scrape new data" button that will update the latest news and featured image with the latest information from NASA's webpage:
 
-![alt text](https://github.com/benniehana111/Mission-to-Mars/blob/main/images/Mars_page_2.png)?raw=true)
+![alt text](https://github.com/benniehana111/Mission-to-Mars/blob/main/images/Mars_page_2.png)
 
+### Deliverable 3A
 In deliverable 3 the index.html file was modified to create a wide update bar and to widen the columns in the Mars Facts table:
 
-![alt text](https://github.com/benniehana111/Mission-to-Mars/blob/main/images/Mars_page_3.png)?raw=true)
+![alt text](https://github.com/benniehana111/Mission-to-Mars/blob/main/images/Mars_page_3.png)
 
+### Deliverable 3B
 In deliverable 3 the web app was tested for mobile device responsiveness (image for Samsung Galaxy S8 is displayed):
 
-![alt text](https://github.com/benniehana111/Mission-to-Mars/blob/main/images/Mars_page_4.png)?raw=true)
+![alt text](https://github.com/benniehana111/Mission-to-Mars/blob/main/images/Mars_page_4.png)
 
 ## Summary
 

@@ -8,7 +8,7 @@ This analysis involved creating an automated web scraping process using Python, 
 
 The code for deliverable 1 correctly displays high resolution Mars Hemisphere Images and Titles:
 
-![alt text](https://github.com/benniehana111/Mission-to-Mars/images/Mars_Page_v0.png?raw=true)
+![alt text](https://github.com/benniehana111/Mission-to-Mars/tree/main/images/Mars_Page_v0.png?raw=true)
 
 ## Summary
 

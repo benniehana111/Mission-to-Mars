@@ -8,27 +8,27 @@ import pandas as pd
 import datetime as dt
 from webdriver_manager.chrome import ChromeDriverManager
 
-
 def scrape_all():
+    
     # Initiate headless driver for deployment
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=True)
-
     news_title, news_paragraph = mars_news(browser)
-
+    hemispheres = mars_high_resolution_images(browser)
+    
     # Run all scraping functions and store results in a dictionary
     data = {
         "news_title": news_title,
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
-        "last_modified": dt.datetime.now()
+        "last_modified": dt.datetime.now(),
+        "hemispheres": hemispheres
     }
 
     # Stop webdriver and return data
     browser.quit()
     return data
-
 
 def mars_news(browser):
 
@@ -57,8 +57,8 @@ def mars_news(browser):
 
     return news_title, news_p
 
-
 def featured_image(browser):
+    
     # Visit URL
     url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
     browser.visit(url)
@@ -85,6 +85,7 @@ def featured_image(browser):
     return img_url
 
 def mars_facts():
+    
     # Add try/except for error handling
     try:
         # Use 'read_html' to scrape the facts table into a dataframe
@@ -100,7 +101,47 @@ def mars_facts():
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html(classes="table table-striped")
 
-if __name__ == "__main__":
+def mars_high_resolution_images(browser):
+    
+    # 1. Use browser to visit the URL 
+    url = 'https://marshemispheres.com/'
+    browser.visit(url)
+    
+    # 2. Create a list to hold the images and titles.
+    hemisphere_image_urls = []
 
+    # 3. Write code to retrieve the image urls and titles for each hemisphere.
+    # Hint1: Find the HTML tag that holds all the links to the full-resolution images 
+    html = browser.html
+    home_soup = soup(html, "html.parser")
+    results = home_soup.find_all("div", class_="item")
+    # Hint2: Use a for loop to iterate through the tags
+    i = 3
+    for result in results:
+        # Hint3: Create an empty dictionary, hemispheres = {}, inside the for loop
+        hemispheres = {}
+        # Hint4: Use for loop to click on each link, navigate to the image, retrieve the URL, and return to beginning for next image
+        full_image_elem = browser.find_by_tag('img')[i]
+        full_image_elem.click()
+        html = browser.html
+        img_soup = soup(html, "html.parser")
+        try:
+            img_url_rel = img_soup.find('ul').find('li').find('a')['href']
+            title = img_soup.find("div", class_="cover").h2.get_text().strip()
+        except BaseException:
+            img_url_rel = ''
+            title = 'Home Page'
+        full_image_url  = f"{url}{img_url_rel}"
+        title = img_soup.find("div", class_="cover").h2.get_text().strip()
+        hemispheres["img_url"] = full_image_url
+        hemispheres["title"] = title
+        hemisphere_image_urls.append(hemispheres)
+        browser.back()
+        i += 1
+        
+    # 4. Print the list that holds the dictionary of each image url and title.
+    return hemisphere_image_urls
+
+if __name__ == "__main__":
     # If running as script, print scraped data
     print(scrape_all())
